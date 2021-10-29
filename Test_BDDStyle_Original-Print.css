@@ -1,0 +1,524 @@
+@namespace oxy url('http://www.oxygenxml.com/extensions/author');
+@namespace xml "http://www.w3.org/XML/1998/namespace"; 
+
+@page { 
+  size: A4 portrait;
+  margin: 2.5cm;
+  
+  @bottom-center {
+    content: "-" counter(page) "-";
+    font-size: 8pt;
+    font-family: Andron;
+  }
+
+  @footnote {
+		content: leader(solid);
+		color:black;
+	}
+}
+
+
+@font-face {
+  font-family: Andron;
+  src: url(Andron-Scriptor-Web.ttf) ;
+}
+
+oxy|comment {
+  display:none !important;
+}
+
+body{
+  font-family:Andron;
+  color:black;
+  white-space: normal;
+  line-height:1.6;
+}
+
+/*The abbreviated word is noted in the <abb> element*/
+abbr {
+  display: inline;
+}
+
+/*additions*/
+add[type="contemporary"] {
+  display: inline;
+  color: #00c000;
+  text-decoration: underline;
+}
+add[type="later"] {
+  display: inline;
+  color: #00c000;
+  text-decoration: underline;
+}
+add[type="modern"] {
+  display: inline;
+  color: #00c000;
+  text-decoration: underline;
+}
+
+subst add {
+  background-color: #D0D0D0;
+}
+subst del[rend="erasure"] {
+  display: none;
+}
+
+/*Column break*/
+cb[n="a"] {
+  content: " Sp. " attr(n) "]";
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+/*cb[n="b"]::before {
+  content: '[Sp. 'oxy_xpath('preceding::pb[1]/@n');
+  font-weight: bold;
+}*/
+cb[n="b"] {
+  content: " Sp. " attr(n) "]";
+  font-weight: bold;  
+  display:block;
+  page-break-before:always;
+  text-align: center;
+}
+
+/*work processes and subsequent changes*/
+change {
+  display: block;
+  content: "Letzte Änderungen: "attr(when) ", durch " attr(who)". Status: " attr(status);
+}
+
+/*Deletions*/
+del[rend="erasure"] {
+  background-color: #D0D0D0;
+  content:"  ";
+}
+
+del[rend="strikethrough"] {
+  display: inline;
+  color: red;
+  text-decoration: line-through;
+}
+
+del[rend="blackout"] {
+  display: inline;
+  background-color: black;
+  color: rgb(221, 218, 218);
+}
+
+del[rend="expunctuation"] {
+  display: inline;
+  text-decoration-style: dotted;
+  color: red;
+}
+
+del[rend="underlined"] {
+  display: inline;
+  color: red;
+  text-decoration: underline;
+}
+
+/*The <teiHeader> is concluded by a breakdown of the special characters used in the <encodingDesc> element.*/
+encodingDesc {
+  display: none;
+}
+
+expan {
+    display: inline;
+    color: #099981 !important;
+}
+expan::before{
+  content: " {";
+}
+expan::after{
+  content: "}";
+}
+
+/*Nota characters are marked as <figure type="nota-bene"/> within the <note> element*/
+figure {
+  display: block;
+}
+
+/*File Description*/
+fileDesc {
+  display: none;
+  /*margin-bottom: 15px;*/
+}
+
+/*The <fw> element also records significant layout phenomena (headers, pagination and declamation).*/
+fw[type="page-header"] {
+  font-weight: bold !important;
+  text-align: center;
+  display: block;
+}
+fw[type="quire-numeral"] {
+  font-weight: bold !important;
+}
+fw[type="catch"] {
+  font-weight: bold !important;
+}
+
+
+/*Reason of loss of a damaged or fragmented text*/
+gap {
+  content:"[Lücke: " attr(reason) "]";
+  color: rgb(192, 192, 192);
+  font-style: italic;
+}
+
+/*graphic{
+  color: gray;
+  content: "{" attr(url) "}";    
+}*/
+
+handNote {
+  display: block;
+}
+
+/*It marks handshift in the text*/
+handShift{
+  display: none;
+}
+
+/*Initials and highlights*/
+hi[rend] {
+  color: inherit;
+}
+
+hi[rend="color:red"] {
+  display: inline;
+  color: red !important;
+}
+
+hi[rend="delux-initial"] {
+  display: inline;
+  font-size: 110%;
+  font-weight: bold;
+  color: red !important;
+   }
+
+hi[rend="versal"] {
+  display: inline;
+  font-size: 110%;
+  font-weight: bold;
+  color: red !important;
+}
+
+hi[rend="color-stroked"] {
+  background-color: #ff4500 !important;
+}
+
+hi[rend="color:red initial"] {
+  display: inline;
+  font-size: 200%;
+  font-weight: bold;
+  color: red !important;
+}
+
+hi[rend="color:red capitals"] {
+  display: inline;
+  color: red !important;
+}
+
+hi[rend="color:red color-stroked"] {
+  background-color: orangered !important;
+}
+
+/* /hi[rend="color:red capitals"] hi[rend="color:red initial"]{
+  text-transform: uppercase ; 
+  font-size: 130%;
+  display: inline;
+  font-weight: unset !important;
+} *
+
+/*ID number of the transcribed book*/
+idno {
+  display: none;
+}
+
+/*Within the <item>, the chapter number set off in the manuscripts is marked with the element <label>*/    
+label {
+  display: inline;
+  font-weight: bold;
+}
+label[place="margin left"] {
+  float: left;
+}
+label[place="margin right"] {
+  float: right;
+}
+
+/*Line break*/
+/*lb {
+  display: block;
+}*/
+lb:after {
+  content:"\a"; 
+}
+lb[break="no"] {
+  display: inline; 
+}
+lb[break="no"]:after {
+  content:"\a"; 
+}
+lb[break="no"]:before{
+    display:inline;
+    content:"-";
+}
+
+/*The table of contents consists of a <head type="incipit"> as well as a <list> whose <item> lists the respective chapters.*/
+list {
+  display: block;
+} 
+list item {
+  display:inline;
+}
+
+
+measure{
+  text-decoration: underline;
+  background-color: #f2d9e6;
+}
+
+num{
+  background-color: #e6a7c5;
+}
+
+/*Marginalia, interlinear glosses, editorial comments/questions */
+note[type="inscription"] {
+  display: inline !important;
+  font-style: italic;
+  font-size: smaller;
+}
+note[type="inscription"]::after {
+  content: "\a";
+}
+note[type="inscription"] [place="margin left"] {
+  float: left;
+}
+note[type="inscription"] [place="margin right"] {
+  float: right;
+}
+
+note[type="contemporary-marginalia"] {
+  display: inline !important;
+  font-size: smaller;
+  color:#708090;
+}
+note[type="contemporary-marginalia"]::before {
+  content: "| "
+}
+note[type="contemporary-marginalia"]::after {
+  content: " |"
+}
+
+
+note[type="later-marginalia"] {
+  display: inline !important;
+  font-size: smaller;
+  color:#708090;
+}
+note[type="later-marginalia"]::before {
+  content: "|| "
+}
+note[type="later-marginalia"]::after {
+  content: " ||"
+}
+
+
+note[type="contemporary-interlinear"] {
+  display: inline !important;
+  font-size: smaller;
+  color:#708090;
+}
+note[type="contemporary-interlinear"]::before {
+  content: "- "
+}
+note[type="contemporary-interlinear"]::after {
+  content: " -"
+}
+
+
+note[type="later-interlinear"] {
+  display: inline !important;
+  font-size: smaller;
+  color:#708090;
+}
+note[type="later-interlinear"]::before {
+  content: "-- "
+}
+note[type="later-interlinear"]::after {
+  content: " --"
+}
+
+
+note[type="editorial-comment"] {
+    color: black;
+    float: footnote;
+}
+
+note[type="editorial-comment"]:footnote-call {
+	  font-weight: bold;
+    color:black;
+}
+note[type="editorial-comment"]:footnote-marker {
+	  font-weight: bold;
+    color:black;
+}
+
+note[type="editorial-comment"]::before {
+  content:""
+}
+note[type="editorial-comment"]::after {
+  content:""
+}
+
+
+note[type="editorial-question"] { 
+  color: black;
+  float: footnote;
+}
+
+note[type="editorial-question"]:footnote-call {
+	font-weight: bold;
+  color:black;
+}
+note[type="editorial-question"]:footnote-marker {
+	font-weight: bold;
+  color:black;
+}
+
+note[type="editorial-question"]::before {
+  content:""
+}
+note[type="editorial-question"]::after {
+  content:""
+}
+
+
+note[place="margin left"] {
+  float: left;
+}  
+note[place="margin right"] {
+  float: right;
+}  
+
+/*Further numerical information is distinguished by the <num> element specifying the @value attribute*/
+num {
+  display: inline;
+}
+
+p {  
+  font-size: 12pt;
+}
+
+/*Page break*/
+pb {
+  display:block;
+  content: "["attr(n)" ";
+  font-weight: bold; 
+  page-break-before:always;
+  text-align: center !important;
+}
+
+
+/*Links to digitized images*/
+pb[facs]{
+  -oxy-link:attr(facs);
+  text-decoration: underline;
+  color: blue;
+}
+
+/*Name of the place of the transcribed book
+placeName:before{
+ content:"Ortsname: "
+}*/
+
+/*If marginalia are clearly bound to a text passage by a reference character, the <ref type="note-anchor"/> element is set at the corresponding place and the @target attribute is used to refer to the ID of the marginalia. */
+ref {
+  display: inline;
+  color: #fa7b21;
+}
+
+
+/*Information about editors
+resp {
+  display: inline;
+}
+respStmt {
+  display: block;
+  font-size: 12pt !important;
+  text-transform:none !important;
+  font-weight: normal !important;
+  text-align:left !important;
+}
+respStmt:before {
+    content: "Bearbeitet durch: "
+}*/
+
+/*The frequent phenomenon that parts of words extending over the line have been added in another line is represented by the elements <supplied> and <seg>. It should be noted that the displaced word is first recorded by <seg> at the place of its actual occurrence. Then it is inserted by <supplied> at the place of its logical affiliation.*/
+seg {
+  color: rgb(0, 0, 128);
+  text-decoration: underline;
+}
+supplied {
+  color: rgb(117, 166, 245);
+}
+supplied::before {
+  content: "[";
+}
+supplied::after {
+  content: "]";
+}
+
+/*Description of the source*/
+sourceDesc {
+  display: none;
+  /*block;
+  border: thin silver solid;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 15px;*/
+}
+
+teiHeader {
+  display: none;
+  /*block;
+  background-color: #F5F5F5;
+  padding-bottom: 10px;
+  font-size: 12pt;*/
+}
+
+/*Unique identifier of the text witness = the title of the book
+title {
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+title:after {
+  content: "\a";
+}
+
+titleStmt {
+  text-align: center;
+}*/
+
+/*When transcribing medieval textual witnesses, unclear readings of text passages may occur for various reasons. These are indicated by the element <unclear> and thus kept comprehensible.*/
+unclear[cert="low"] {
+  display: inline;
+  color:#c34df1;
+  font-weight: bold;
+}
+
+unclear[cert="medium"] {
+  display: inline;
+  color:#cc77ec;
+  font-weight: normal;
+}
+
+unclear[cert="high"] {
+  display: inline;
+  color:#8705b9;
+  font-weight: normal;
+}
