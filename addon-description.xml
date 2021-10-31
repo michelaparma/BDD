@@ -1,0 +1,19 @@
+<xt:extensions xmlns:xt="http://www.oxygenxml.com/ns/extension"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.oxygenxml.com/ns/extension http://www.oxygenxml.com/ns/extension/extensions.xsd">
+    
+    <xt:extension id="bdd-transcription">
+        <xt:location href="bdd-trascription.zip"/>
+        <xt:version>1.0.0</xt:version>
+        <xt:oxy_version>18.0+</xt:oxy_version>
+        <xt:type>framework</xt:type>
+        <xt:author>Michela Parma</xt:author>
+        <xt:name>bdd-transcription</xt:name>
+        <xt:description xmlns="http://www.w3.org/1999/xhtml">BDD framework and project files for transcribing manuscripts.</xt:description>
+        <xt:license>
+<![CDATA[
+Everybody's welcomed to use this
+]]></xt:license>
+    </xt:extension>
+    
+</xt:extensions>
